@@ -63,3 +63,26 @@ describe('buttons text changes to reflect the state the door will be in if click
         expect(locked.textContent).not.toBe('Unlock');
     })
 })
+
+describe('The toggle button is disabled', () => {
+    test('toggle is disabled if the gate is Open', () => {
+        const {getByText} = render(
+            <Controls
+                data-testid='controls'
+                locked={false}
+                closed={false}
+            />
+        )
+        expect(getByText(/lock/i)).not.toBeEnabled();
+    })
+    test('toggle is disabled if the gate is Locked', ()=> {
+        const {getByText} = render(
+            <Controls
+                data-testid='controls'
+                locked={true}
+                closed={true}
+            />
+        )
+        expect(getByText(/open gate/i)).not.toBeEnabled();
+    })
+})
