@@ -19,3 +19,17 @@ test('Displays if gate is closed and locked', () =>{
     expect(locked.textContent).toMatch('Locked');
     expect(closed.textContent).toMatch('Closed');
 })
+
+test('Displays Closed if the closed prop is true', () => {
+    const {getByText} = render(<Display closed={true} />)
+    const closed = getByText(/closed/i);
+
+    expect(closed.textContent).toMatch('Closed');
+})
+
+test('Displays Open if closed prop is false', () => {
+    const {getByText} = render(<Display closed={false} />);
+    const open = getByText(/open/i);
+
+    expect(open.textContent).toMatch('Open');
+})
