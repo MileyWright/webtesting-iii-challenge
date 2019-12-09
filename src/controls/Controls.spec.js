@@ -1,7 +1,21 @@
 import React from 'react';
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
 import {render, fireEvent} from '@testing-library/react';
 import Controls from '../controls/Controls';
+
+test('Provide buttons to toggle the closed/locked states', () => {
+    const {getByText} = render(
+        <Controls 
+            data-testid = 'controls'
+            locked={true}
+            closed={true}
+        />
+    )
+    const closed =getByText(/unlock gate/i);
+    const open = getByText(/open/i);
+    expect(closed).toBeVisible();
+    expect(open).toBeVisible();
+});
 
 describe('buttons text changes to reflect the state the door will be in if clicked', () => {
     test('button toggle to Open and Unlocked', () =>{
