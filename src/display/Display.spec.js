@@ -3,6 +3,7 @@ import Display from '../display/Display';
 import {render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
+
 test('Defaults to unlocked and open', () => {
     const wrapper = render(<Display />);
     const unlocked = wrapper.getByText(/unlocked/i);
