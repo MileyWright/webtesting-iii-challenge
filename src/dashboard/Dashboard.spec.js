@@ -1,11 +1,16 @@
 // Test away
 import React from 'react';
-import * as rtl from '@testing-library/react';
+import * as rtl from 'react-testing-library';
 import '@testing-library/jest-dom/extend-expect';
 import Dashboard from './Dashboard';
+afterEach(rtl.cleanup);
 
-
-test('<Dashboard /> snapshot' , () => {
-    const wrapper = rtl.render(< Dashboard />);
-    expect(wrapper.asFragment()).toMatchSnapshot();
+test('Displays <Display/>', () => {
+    const {getByText}= rtl.render(<Dashboard/>);
+    expect(getByText(/Unlocked/i)).toBeInTheDocument();
 })
+test('Displays <Controls/>' , () => {
+    const {getByText} = rtl.render(< Dashboard />);
+    expect(getByText(/Close Gate/i)).toBeInTheDocument();
+});
+ 
